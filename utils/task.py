@@ -24,5 +24,3 @@ class ComputingTask(Task):
 
     def get_compute_expr(self) -> str:
         return self.expression
-
-

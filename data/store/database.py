@@ -17,9 +17,3 @@ class RedisController:
 
     def append(self, name, value):
         self.connection.append(name, value)
-
-
-
-
-
-
