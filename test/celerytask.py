@@ -2,7 +2,6 @@ from celery import Celery
 from workflow.computing.engine import ComputingEngine
 
 app = Celery('engine', backend='redis://localhost', broker='redis://localhost//6379')
-app.start()
 
 app.register_task(ComputingEngine())
 

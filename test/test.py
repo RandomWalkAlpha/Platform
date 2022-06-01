@@ -21,10 +21,7 @@ def hello():
 from utils.mapping import *
 from workflow.computing.engine import ComputingEngine
 from data.collector.collector import DQCollector
-from datetime import datetime
 
-data = DQCollector()
-std_data = data.standardize(index='zs_trading_day', columns='zs_code', values='S_DQ_CLOSE')
-engine = ComputingEngine(data.quotation)
+engine = ComputingEngine()
 result, _ = engine.compute("MA($S_DQ_CLOSE,5)")
 print(result, _)
