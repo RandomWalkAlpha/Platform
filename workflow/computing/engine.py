@@ -6,13 +6,13 @@ from pandas import DataFrame
 from utils.mapping import MAPPING_FUNCTION_SET, DELAY, DELTA, MA, RANK, RETURN, STD
 from data.collector.collector import DQCollector
 
+
 class ComputingEngine(Task):
 
     def __init__(self):
-        # self.celery = Celery('engine', backend='redis://localhost', broker='redis://localhost//6379')
-        # self.db = RedisController()
         self.collector = DQCollector()
         self.data = self.collector.quotation
+        self.db = RedisController()
 
     def expression_parse(self, expression: str) -> (str, DataFrame, int):
         """

@@ -1,14 +1,13 @@
 from celery import Celery
 from workflow.computing.engine import ComputingEngine
 
-app = Celery('engine', backend='redis://localhost', broker='redis://localhost//6379')
-
+app = Celery('engine', backend='redis://localhost:6379/0', broker='redis://localhost:6379/0')
 app.register_task(ComputingEngine())
 
 
 @app.task(bind=True, base=ComputingEngine)
 def parse(self, expression: str):
-    self.compute()
+    self.compute(expression)
 
 
 if __name__ == '__main__':
