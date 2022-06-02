@@ -1,5 +1,4 @@
-import celery
-from celery import Celery, Task
+from celery import Task
 from data.store.database import RedisController
 from datetime import datetime
 from pandas import DataFrame
@@ -8,7 +7,10 @@ from data.collector.collector import DQCollector
 
 
 class ComputingEngine(Task):
-
+    """
+    This engine is used to arrange data and computing.
+    Now we have registered this class to 'celery' so that engine could get the task computed.
+    """
     def __init__(self):
         self.collector = DQCollector()
         self.data = self.collector.quotation

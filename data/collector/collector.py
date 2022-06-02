@@ -37,6 +37,9 @@ class DQCollector(Collector):
             return False
 
     def standardize(self, index, columns=None, values=None, subset=None) -> DataFrame:
+        """
+        To convert raw daily quotation to standard format
+        """
         if subset is None:
             subset = ['zs_trading_day', 'zs_code']
         dataframe = self.quotation.drop_duplicates(subset=subset)

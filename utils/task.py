@@ -13,7 +13,9 @@ class Task(metaclass=ABCMeta):
 
 class ComputingTask(Task):
     """
-    Class for computing task
+    Class for computing task.
+    This class is designed for adding tasks with config files.
+    Now we have implemented factor computing due to simple expression inputting.
     """
     def __init__(self, config: Dict):
         """
