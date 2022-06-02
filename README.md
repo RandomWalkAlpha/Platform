@@ -20,4 +20,4 @@ The flow chart of this platform is shown in the figure below
 
 ![](docs/architecture.png)
 
-As we can see, we just need to input expression and daily quotation, then we could get the factors automatically. In this platform, expression would be resolved to a combination of metafunctions. The functions will make a request for data or factors to *Redis*, and then compute the full factor or only the incremental part according to the request result. Factors can be exported when the calculation is complete.
+As we can see, we just need to input expression and daily quotation, then we could get the factors automatically. In this platform, expression would be resolved to a combination of metafunctions. The functions will make a request for data or factors to *Redis*, and then compute the full factor or only the incremental part according to the request result. Factors can be exported when the computing is complete.
