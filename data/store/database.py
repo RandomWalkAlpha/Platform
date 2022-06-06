@@ -9,11 +9,11 @@ class RedisController:
         self.pool = redis.ConnectionPool(host, port)
         self.connection = redis.Redis(password=password, connection_pool=self.pool, decode_responses=True)
 
-    def set(self, name, value):
+    def put(self, name, value):
         self.connection.set(name, value)
 
     def get(self, name):
         self.connection.get(name)
 
-    def append(self, name, value):
-        self.connection.append(name, value)
+    def scan(self, name):
+        pass

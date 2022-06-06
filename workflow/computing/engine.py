@@ -11,6 +11,7 @@ class ComputingEngine(Task):
     This engine is used to arrange data and computing.
     Now we have registered this class to 'celery' so that engine could get the task computed.
     """
+
     def __init__(self):
         self.collector = DQCollector()
         self.data = self.collector.quotation
@@ -36,5 +37,5 @@ class ComputingEngine(Task):
         cost_time = end_time - start_time
         return result, cost_time
 
-    def record(self):
-        pass
+    def store(self, result: DataFrame, path: str = './', name: str = 'data', key: str = 'hdf'):
+        result.to_hdf(f'{path}{name}.hdf', key=key)

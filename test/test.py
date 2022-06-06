@@ -1,3 +1,4 @@
+import pandas as pd
 from pandas import DataFrame
 from utils.task import ComputingTask
 import pickle
@@ -22,6 +23,11 @@ from utils.mapping import *
 from workflow.computing.engine import ComputingEngine
 from data.collector.collector import DQCollector
 
+
+def store(result: DataFrame, **kwargs):
+    result.to_hdf(f"{kwargs['name']}.hdf", key=kwargs['key'])
+
 engine = ComputingEngine()
 result, _ = engine.compute("MA($S_DQ_CLOSE,5)")
-print(result, _)
+dic = {'name': 'test', 'key': 'df'}
+store(result, **dic)

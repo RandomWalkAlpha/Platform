@@ -7,7 +7,8 @@ app.register_task(ComputingEngine())
 
 @app.task(bind=True, base=ComputingEngine)
 def parse(self, expression: str):
-    self.compute(expression)
+    result, _ = self.compute(expression)
+    self.store(result)
 
 
 """

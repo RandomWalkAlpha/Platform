@@ -7,7 +7,8 @@ app.register_task(ComputingEngine())
 
 @app.task(bind=True, base=ComputingEngine)
 def parse(self, expression: str):
-    self.compute(expression)
+    df, _ = self.compute(expression)
+
 
 
 if __name__ == '__main__':
