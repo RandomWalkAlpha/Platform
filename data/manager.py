@@ -20,7 +20,7 @@ class SignalDataManager(abc.ABC):
         raise NotImplementedError
 
 
-class SignalStoreManager(abc.ABC):
+class SignalStorageManager(abc.ABC):
     """
     This class is responsible for redis managing
     """
