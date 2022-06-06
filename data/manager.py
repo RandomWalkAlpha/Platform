@@ -1,19 +1,9 @@
-from abc import ABCMeta, abstractmethod
+import abc
+import redis
 from pandas import DataFrame
 
-class Manager(metaclass=ABCMeta):
-    """
-    Abstract base class
-    """
 
-    @abstractmethod
-    def get(self, *args, **kwargs): ...
-
-    @abstractmethod
-    def put(self, *args, **kwargs): ...
-
-
-class SignalDataManager(Manager):
+class SignalDataManager(abc.ABC):
     def __init__(self):
         pass
 
@@ -30,18 +20,19 @@ class SignalDataManager(Manager):
         raise NotImplementedError
 
 
-class SignalDefinitionManager(Manager):
+class SignalStoreManager(abc.ABC):
     """
-    此类用于与 redis 的交互
-    # TODO: 解耦
+    This class is responsible for redis managing
     """
-    def __init__(self):
-        pass
 
-    def get(self, *args, **kwargs):
+    def __init__(self, host: str = 'localhost', port: int = 6379, password: str = None):
+        self.pool = redis.ConnectionPool(host, port)
+        self.connection = redis.Redis(password=password, connection_pool=self.pool, decode_responses=True)
+
+    def get(self, signal_name: str):
         raise NotImplementedError
 
-    def put(self, *args, **kwargs):
+    def put(self, signal_name: str, expression: str):
         raise NotImplementedError
 
     def scan(self):
