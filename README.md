@@ -1,7 +1,7 @@
 # Platform
 
 ### 1. data/
-As its name means, this directory is used for data managing. `collector.py` is responsible for daily quotation reading, writing and standardizing. `database.py` is the interface of `Redis`, we may add more features in the future.
+As its name means, this directory is used for data managing. `collector.py` is responsible for daily quotation reading, writing and standardizing. `database.py` is the interface of *Redis*, we may add more features in the future.
 
 ### 2. docs/
 This directory contains project documents and resources.
