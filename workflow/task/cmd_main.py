@@ -1,12 +1,18 @@
 from cmd_manager import parse
+from data.model import DataModel
 
 
 def main():
     while True:
+        model = None
         try:
-            exp = input("Input factor calculation expression:")
-            parse.delay(exp)
+            name = input("Input factor name:\n> ")
+            exp = input("Input factor calculation expression:\n> ")
+            model = DataModel(name, exp)
+            parse.delay(model)
+            model.update('finished')
         except Exception:
+            model.disabled()
             continue
 
 

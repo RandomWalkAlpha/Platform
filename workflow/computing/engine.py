@@ -1,9 +1,9 @@
 from celery import Task
-from data.store.database import RedisController
 from datetime import datetime
 from pandas import DataFrame
 from utils.mapping import MAPPING_FUNCTION_SET, DELAY, DELTA, MA, RANK, RETURN, STD
 from data.collector.collector import DQCollector
+from data.manager import SignalDataManager, SignalStorageManager
 
 
 class ComputingEngine(Task):
@@ -14,8 +14,8 @@ class ComputingEngine(Task):
 
     def __init__(self):
         self.collector = DQCollector()
-        self.data = self.collector.quotation
-        self.db = RedisController()
+        self.sdm = SignalDataManager()
+        self.ssm = SignalStorageManager()
 
     def expression_parse(self, expression: str) -> (str, DataFrame, int):
         """
@@ -37,5 +37,9 @@ class ComputingEngine(Task):
         cost_time = end_time - start_time
         return result, cost_time
 
-    def store(self, result: DataFrame, path: str = './', name: str = 'data', key: str = 'hdf'):
+    def to_redis(self, result: DataFrame, name: str, expression: str, notes: str = ''):
+        self.sdm.put(name, result)
+        self.ssm.put(name, expression, notes)
+
+    def to_file(self, result: DataFrame, path: str = './', name: str = 'data', key: str = 'hdf'):
         result.to_hdf(f'{path}{name}.hdf', key=key)
