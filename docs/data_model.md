@@ -4,7 +4,7 @@ Data model is used to describe factor information, task and data status. Firstly
 
 KEY (str) | VALUE (str)
 --- | ---
-signal:[NAME] | Factor signal name
+signal:[NAME] | Factor signal expression
 signal_data:[NAME] | Corresponding serialized dataframe
 
 When finished execution, the status will convert to *failed* or *finished*, depending on the task result. And this model has a member called *self.info*, which including extra information like the start / end date or cost, etc.
