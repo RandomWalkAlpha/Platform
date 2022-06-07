@@ -14,6 +14,8 @@ def parse(self, serialized_model: str):
     expression = model.expression
     model.update('executing')
     result, _ = self.compute(expression)
+    model.set_info('start', result.index[0])
+    model.set_info('start', result.index[-1])
     self.to_redis(result, model.signal, model.expression)
 
 

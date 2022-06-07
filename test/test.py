@@ -8,9 +8,7 @@ collector = DQCollector()
 
 task = collector.standardize(index='zs_trading_day', columns='zs_code', values='S_DQ_CLOSE')
 print(task)
-x = pickle.dumps(task)
-y = pickle.loads(x)
-print(y)
+print(task.index[0], task.index[-1])
 
 '''
 from celery import Celery

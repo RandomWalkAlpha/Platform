@@ -13,7 +13,7 @@ class DataModel:
         assert new_status in self.status_list, "Illegal status assignment."
         self.status = new_status
 
-    def add_info(self, key: str, info: str):
+    def set_info(self, key: str, info: str):
         self.info[key] = info
 
     def disabled(self):
