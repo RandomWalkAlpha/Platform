@@ -20,7 +20,7 @@ class DQCollector(Collector):
     Data collector for daily quotation
     """
 
-    def __init__(self, data_path: str = "../2015.parquet"):
+    def __init__(self, data_path: str = "../../2015.parquet"):
         self.dq_path = data_path
         self.quotation = None
         self.read()

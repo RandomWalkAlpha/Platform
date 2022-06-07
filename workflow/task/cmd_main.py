@@ -1,3 +1,4 @@
+import json
 from cmd_manager import parse
 from data.model import DataModel
 
@@ -9,10 +10,11 @@ def main():
             name = input("Input factor name:\n> ")
             exp = input("Input factor calculation expression:\n> ")
             model = DataModel(name, exp)
-            parse.delay(model)
+            parse.delay(json.dumps(model.__dict__))
             model.update('finished')
         except Exception:
             model.disabled()
+            print("Error occurred!")
             continue
 
 
